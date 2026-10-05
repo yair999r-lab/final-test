@@ -3,7 +3,8 @@ import { myRepo } from "../dal/mongoRepo.js"
 
 export async function updateAlert(req, res, next) {
     try {
-        const alertId = new ObjectId(req.param)
+        console.log(req.param)
+        const alertId = new ObjectId(req.params.id)
         const dataToUpdate = req.data
 
         const updateAlert = await myRepo.updateData(alertId, dataToUpdate)

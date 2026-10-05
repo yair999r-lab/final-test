@@ -11,7 +11,13 @@ function basicRepo(db){
         return result
     }
 
-    return {insertData, updateData}
+    async function deleteData(id) {
+        console.log(id)
+        const result = await db.collection("alerts").deleteOne({_id: id})
+        return result
+    }
+
+    return {insertData, updateData, deleteData}
 }
 
 export const myRepo = basicRepo(myDb)
