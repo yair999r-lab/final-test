@@ -1,23 +1,23 @@
 import React, { useEffect, useState } from 'react'
 import AlertsMap, { type MapAlert } from './AlertsMap'
-// import { useAlertsStore } from '../store/useAlertsStore'
 import ShowAlert from './ShowAlert'
+import "./Dashbord.css"
  
 
 
 const Dashdord = () => {
-    // const alerts = useAlertsStore((state) => state.alerts)
-    // const setAlerts = useAlertsStore((state) => state.addAlerts)
     const [loading, setLoading] = useState<string | null>(null)
     const [search, setSearch] = useState<string>("")
     const [alerts, setAlerts] = useState<MapAlert[] >()
     const [filterData, setFilterData] = useState<MapAlert[] >()
+    const [url, setUrl] = useState<string>("http://localhost:3000/api/alerts")
+    const [id, setId] = useState<string>("")
     
     useEffect(() => {
         async function getAlerts() {
             try {
                 setLoading("loading...")
-                const result = await fetch("http://localhost:3000/api/alerts", {method: "GET"})
+                const result = await fetch(url, {method: "GET"})
                 setLoading(null)
                 if(result.ok){
                     const data = await result.json()
@@ -32,30 +32,39 @@ const Dashdord = () => {
             }
 
         } getAlerts()
-    }, [])
+    }, [url])
 
-    function filter (e: React.FormEvent){
+    function filterByName (e: React.FormEvent){
             e.preventDefault()
             setFilterData(alerts?.filter((a) => a.displayName === search))
     }
+
+    function filterByPriority(e: React.FormEvent){
+        e.preventDefault()
+        setFilterData(alerts?.filter((a) => a.priority === search))
+    }
+    console.log(url)
     if(loading) return (<p>{loading}</p>)
+        if(filterData?.length === 0) return (<p>no alert found</p>)
         if(alerts && filterData) {
             return (
-    <div>
-        <form onSubmit={filter}>
+    <div className='dashbord'>
+        <form onSubmit={filterByName}>
         <label>search by name <input type="text" onChange={(e) => setSearch(e.target.value)} /></label>
-                <button type='submit'>send</button>
+            <button type='submit'>send</button>
         </form>
-        {/* <label>filter by priority <input type="text"  onChange={(e) => setSearch(e.target.value)}/></label> */}
-        {/* <label >Search by name
-            <input type="text" onChange={(e) => setFilterData(alerts.filter((a) => a.displayName === e.target.value))} />
-        </label>
-        <label >Search by status
-            <input type="text" onChange={(e) => setFilterData(alerts.filter((a) => a.status === e.target.value))} />
-        </label>
-        <label >Search by priority
-            <input type="text" onChange={(e) => setFilterData(alerts.filter((a) => a.priority === e.target.value))} />
-        </label> */}
+
+        <form onSubmit={filterByPriority}>
+        <label>filter by priority <input type="text"  onChange={(e) => setSearch(e.target.value)}/></label>
+            <button type='submit'>send</button>
+        </form>
+            
+         <form onSubmit={(e) => {e.preventDefault(), setUrl(url + "/" + id)}}>
+            <label>get aleart by id <input type="text" required onChange={(e) => {setId(e.target.value)}}/></label>
+                <button type='submit'>send</button>
+            </form>   
+
+        <button onClick={() => {setFilterData(alerts)}}>restart filter</button>
 
         <AlertsMap alerts={filterData} className='alerts' ></AlertsMap>
         <ShowAlert alerts={filterData}/>

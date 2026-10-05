@@ -9,9 +9,9 @@ interface Respose {
 const UpdateAlert = () => {
         const [displayName, setDisplayName] = useState<string>("")
         const [description, setDescription] =useState<string>("")
-        const [priority, setPriority] = useState<string>("")
-        const [arena, setArena] = useState<string>("")
-        const [status, setStatus] = useState<string>("")
+       const [priority, setPriority] = useState<string>("Low")
+          const [arena, setArena] = useState<string>("North")
+          const [status, setStatus] = useState<string>("Active")
         const [lon, setLon] = useState<string>("")
         const [lat, setLat] = useState<string>("")
         const [alertId, setAlertId] = useState<string>("")
@@ -43,24 +43,42 @@ const UpdateAlert = () => {
         {UpdateAlert && <p>alert update!!!</p>}
         <form onSubmit={sendAlert}>
             <label>aleart id <input type="text" required value={alertId} onChange={(e) => {setAlertId(e.target.value)}}/></label>
-       <label >displayName
+            <label >displayName
                 <input type="text" value={displayName}  onChange={(e) => {setDisplayName(e.target.value)}}/>
             </label>
             <label>description
                 <input type="text" value={description}  onChange={(e) => {setDescription( e.target.value)}} />
             </label>
-            <label>priority <input type="text" value={priority}  onChange={(e) => {setPriority(e.target.value)}}/>
-</label>
-        <label > arena <input type="text" value={arena}  onChange={(e) => setArena(e.target.value)}/>
-</label>
-        <label > status<input type="text" value={status}  onChange={(e) => setStatus(e.target.value)}/>
-</label>
-        <label >lon<input type="text" value={lon}  onChange={(e) => setLon(e.target.value)}/>
-</label>
-        <label > lat  <input type="text" value={lat}  onChange={(e) => setLat(e.target.value)}/>
-</label>
-        <button type='submit'>send</button>
-        </form></div>
+            <label >priority
+                <select value={priority}  onChange={(e) => {setPriority(e.target.value)}} name="priority" id="priority">
+                    <option value="Low">Low</option>
+                    <option value="Medium">Medium</option>
+                    <option value="High">High</option>
+                    <option value="Critical">Critical</option>
+                </select>
+            </label>
+            <label >arena
+                <select value={arena} name="arena" id="arena" onChange={(e) => {setArena(e.target.value)}}>
+                    <option value="North">North</option>
+                    <option value="South">South</option>
+                    <option value="Center">Center</option>
+                </select>
+            </label>
+            <label >status
+
+                <select value={status} name="status" id="status" onChange={(e) => {setStatus(e.target.value)}}>
+                    <option value="Active">Active</option>
+                    <option value="Handled">Handled</option>
+                </select>
+            </label>
+            <label >lon
+                <input type="text" value={lon} onChange={(e) => setLon(e.target.value)}/>
+            </label>
+            <label >lat
+                <input type="text" value={lat} onChange={(e) => setLat(e.target.value)}/>
+            </label>
+            <button type='submit'>send alert</button>
+                </form></div>
   )
 }
 

@@ -8,7 +8,7 @@ const PORT = process.env.PORT
 const server = express()
 
 server.use(express.json())
-server.use(cors({origin: "*"}))
+server.use(cors())
 
 
 server.use("/api",dataRouter)
@@ -17,6 +17,7 @@ server.use("/api",getRouter)
 server.use((err, _req, res, _next) => {
     const statusCod = err.status || 500
     const message = err.message || "Internal Server Error"
+    console.log(message)
     res.status(statusCod).json({success: false, message: message})
 })
 

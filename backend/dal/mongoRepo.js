@@ -7,7 +7,7 @@ function basicRepo(db){
     }
 
     async function updateData(id, upData) {
-        const result = await db.collection("alerts").updateOne({_id: id}, {$set: {upData}})
+        const result = await db.collection("alerts").updateOne({_id: id}, {$set: {...upData}})
         return result
     }
 

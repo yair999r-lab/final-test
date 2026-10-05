@@ -1,0 +1,13 @@
+.header {
+    
+    padding: 2rem;
+    margin-bottom: 2rem;
+}
+
+.nev-but{
+    width: 2rem;
+    margin: 1rem;
+    text-decoration: none;
+    padding: 1rem;
+    border-radius: 8px;
+}

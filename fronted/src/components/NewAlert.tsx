@@ -20,9 +20,9 @@ export interface Respose {
 const NewAlert = () => {
     const [displayName, setDisplayName] = useState<string>("")
     const [description, setDescription] =useState<string>("")
-    const [priority, setPriority] = useState<string>("")
-    const [arena, setArena] = useState<string>("")
-    const [status, setStatus] = useState<string>("")
+    const [priority, setPriority] = useState<string>("Low")
+    const [arena, setArena] = useState<string>("North")
+    const [status, setStatus] = useState<string>("Active")
     const [lon, setLon] = useState<string>("")
     const [lat, setLat] = useState<string>("")
 
@@ -58,35 +58,34 @@ const NewAlert = () => {
                 <input type="text" value={description} required onChange={(e) => {setDescription( e.target.value)}} />
             </label>
             <label >priority
-                {/* <select  onChange={(e) => {setPriority(e.target.value)}} name="priority" id="priority">
+                <select value={priority}  onChange={(e) => {setPriority(e.target.value)}} name="priority" id="priority">
                     <option value="Low">Low</option>
                     <option value="Medium">Medium</option>
                     <option value="High">High</option>
                     <option value="Critical">Critical</option>
-                </select> */}
-                <input type="text" value={priority} required onChange={(e) => {setPriority(e.target.value)}}/>
+                </select>
+                {/* <input type="text" value={priority} required onChange={(e) => {setPriority(e.target.value)}}/> */}
             </label>
             <label >arena
-
-                {/* <select value={arena} name="arena" id="arena" onChange={(e) => {setArena(e.target.value)}}>
+                <select value={arena} name="arena" id="arena" onChange={(e) => {setArena(e.target.value)}}>
                     <option value="North">North</option>
                     <option value="South">South</option>
                     <option value="Center">Center</option>
-                </select> */}
-                <input type="text" value={arena} required onChange={(e) => setArena(e.target.value)}/>
+                </select>
+                {/* <input type="text" value={arena} required onChange={(e) => setArena(e.target.value)}/> */}
             </label>
             <label >status
-{/* 
+
                 <select value={status} name="status" id="status" onChange={(e) => {setStatus(e.target.value)}}>
                     <option value="Active">Active</option>
                     <option value="Handled">Handled</option>
-                </select> */}
-                <input type="text" value={status} required onChange={(e) => setStatus(e.target.value)}/>
+                </select>
+                {/* <input type="text" value={status} required onChange={(e) => setStatus(e.target.value)}/> */}
             </label>
             <label >lon
                 <input type="text" value={lon} required onChange={(e) => setLon(e.target.value)}/>
             </label>
-            <label >
+            <label >lat
                 <input type="text" value={lat} required onChange={(e) => setLat(e.target.value)}/>
             </label>
             <button type='submit'>send alert</button>
