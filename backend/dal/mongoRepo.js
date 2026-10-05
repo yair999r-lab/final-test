@@ -12,12 +12,16 @@ function basicRepo(db){
     }
 
     async function deleteData(id) {
-        console.log(id)
         const result = await db.collection("alerts").deleteOne({_id: id})
         return result
     }
 
-    return {insertData, updateData, deleteData}
+    async function findData(filter = {}) {
+        const result = await db.collection("alerts").find(filter).toArray()
+        return result
+    }
+
+    return {insertData, updateData, deleteData, findData}
 }
 
 export const myRepo = basicRepo(myDb)

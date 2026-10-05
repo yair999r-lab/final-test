@@ -2,7 +2,7 @@ import express from "express"
 import { validPost, chackSchema, validUpdate } from "../middleware/validetor.js"
 import { getAlerts } from "../controler/postCon.js"
 import { updateAlert } from "../controler/updateCon.js"
-import { deleteAlert } from "../controler/deleteAlert.js"
+import { deleteAlert } from "../controler/deleteCon.js"
 
 const router = express.Router()
 
