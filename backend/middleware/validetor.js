@@ -1,4 +1,4 @@
-import {number, string, z} from "zod"
+import { z} from "zod"
 
 export const validPost = z.object({
     displayName: z.string(),
@@ -9,3 +9,20 @@ export const validPost = z.object({
     lon: z.number(),
     lat: z.number()
 })
+
+
+export function chackSchema(schema){
+    function valid(req, res, next){
+        const data = req.body
+
+        const result = schema.safePerase(data)
+        if(!result.succses){
+            const error = new Error("Essential data is missing")
+            error.status = 400
+            throw error
+        }
+        res.data = result
+        next()
+    }
+    valid()
+}
