@@ -12,17 +12,16 @@ export const validPost = z.object({
 
 
 export function chackSchema(schema){
-    function valid(req, res, next){
+   return function valid(req, _res, next){
         const data = req.body
 
-        const result = schema.safePerase(data)
-        if(!result.succses){
+        const result = schema.safeParse(data)
+        if(!result.success){
             const error = new Error("Essential data is missing")
             error.status = 400
             throw error
         }
-        res.data = result
+        req.data = result.data
         next()
     }
-    valid()
 }

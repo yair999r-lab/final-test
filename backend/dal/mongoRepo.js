@@ -6,7 +6,6 @@ function basicRepo(db){
         return result.insertedId
     }
 
-
     return {insertData}
 }
 
