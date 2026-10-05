@@ -6,7 +6,12 @@ function basicRepo(db){
         return result.insertedId
     }
 
-    return {insertData}
+    async function updateData(id, upData) {
+        const result = await db.collection("alerts").updateOne({_id: id}, {$set: {upData}})
+        return result
+    }
+
+    return {insertData, updateData}
 }
 
 export const myRepo = basicRepo(myDb)
