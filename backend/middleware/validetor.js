@@ -28,13 +28,15 @@ export const validUser = z.object({
     assignedArena: z.enum(["North", "South"  ,"Center" ,"All"])
 })
 
+export const validLogin = z.object({
+    id: z.string(),
+    password: z.string()
+})
 
 export function chackSchema(schema){
    return function valid(req, _res, next){
         const data = req.body
-        console.log(data)
         const result = schema.safeParse(data)
-        console.log( result.error)
 
         if(!result.success){
             const error = new Error("Essential data is missing")
