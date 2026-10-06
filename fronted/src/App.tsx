@@ -1,6 +1,6 @@
 
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import './App.css'
+
 import Dashdord from './components/Dashdord'
 import Header from './components/Header'
 import NewAlert from './components/NewAlert'
@@ -10,6 +10,7 @@ import Login from './components/Login'
 import Protected from './components/Protected'
 import RegisterPage from './components/RegisterPage'
 import { AdminPage } from './components/AdminPage'
+import UpdateStatus from './components/UpdateStatus'
 
 function App() {
 
@@ -28,6 +29,7 @@ function App() {
 
       <Route path='/RegisterPage' element={<RegisterPage/>}/>
       <Route path='/AdminPage' element={<AdminPage/>}/>
+      <Route path='/UpdateStatus' element={<UpdateStatus/>}/>
       </Route>
     </Route>
     </Routes>

@@ -1,5 +1,4 @@
 import  { useEffect, useState } from "react"
-import { useNavigate } from "react-router-dom"
 
 interface user {
     _id: string,
@@ -34,7 +33,7 @@ export const AdminPage = () => {
             setError("")
             
             const token = localStorage.getItem("token")
-
+            
             try {
                 const result = await fetch("http://localhost:3000/api/auth/all", {method: "GET", headers: {"Content-Type": "application/json", authorization: `Bearer ${token}`}})
                 const data = await result.json() as Resposne

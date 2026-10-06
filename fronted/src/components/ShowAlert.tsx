@@ -1,4 +1,5 @@
 import type { MapAlert } from "./AlertsMap"
+import "./ShowAlert.css"
 
 interface Alerts {
     alerts: MapAlert[]
@@ -6,15 +7,17 @@ interface Alerts {
 
 const ShowAlert = ({alerts} : Alerts) => {
   return (
-    <div>{alerts.map((a, i)=> (<li key={i}>
-        <p>name: {a.displayName}</p>
-        <p>description: {a.description}</p>
-        <p>priority: {a.priority}</p>
-        <p>arena: {a.arena}</p>
-        <p>status: {a.status}</p>
-        <p>lon: {a.lon}</p>
-        <p>lat: {a.lat}</p>
+    <div className="cards">
+    <div className="card">{alerts.map((a, i)=> (<li key={i}>
+        <p className="data">name: {a.displayName}</p>
+        <p className="data">description: {a.description}</p>
+        <p className="data">priority: {a.priority}</p>
+        <p className="data">arena: {a.arena}</p>
+        <p className="data">status: {a.status}</p>
+        <p className="data">lon: {a.lon}</p>
+        <p className="data">lat: {a.lat}</p>
     </li>))}</div>
+    </div>
   )
 }
 

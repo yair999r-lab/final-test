@@ -1,6 +1,6 @@
 import  { useState } from 'react'
 
-interface Respose {
+export interface UpdateRespose {
      success: boolean;
      alertId: string
         message?: string
@@ -8,7 +8,7 @@ interface Respose {
 
 const UpdateAlert = () => {
         const [displayName, setDisplayName] = useState<string>("")
-        const [description, setDescription] =useState<string>("")
+        const [description, setDescription] = useState<string>("")
        const [priority, setPriority] = useState<string>("Low")
           const [arena, setArena] = useState<string>("North")
           const [status, setStatus] = useState<string>("Active")
@@ -22,11 +22,11 @@ const UpdateAlert = () => {
             async function sendAlert(e: React.FormEvent){
                 e.preventDefault()
                 setNewAlert("")
-
+                const token = localStorage.getItem("token")
                 try {
-                    const result = await fetch(`http://localhost:3000/api/alerts/${alertId}`, {method: "PUT", headers: {"Content-Type": "application/json"}, body: JSON.stringify({displayName})})
+                    const result = await fetch(`http://localhost:3000/api/alerts/${alertId}`, {method: "PUT", headers: {"Content-Type": "application/json", authorization: `Bearer ${token}`}, body: JSON.stringify({displayName, description, priority, arena, status, lat, lon})})
         
-                    const data = await result.json() as Respose
+                    const data = await result.json() as UpdateRespose
                     if(result.ok){
                         setNewAlert(data.alertId)
                     }

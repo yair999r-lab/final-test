@@ -10,7 +10,8 @@ const DeleteAlert = () => {
 
         try {
             setLoading("loading...")
-            const result = await fetch("http://localhost:3000/api/alerts/" + alertId, {method: "DELETE"})
+            const token = localStorage.getItem("token")
+            const result = await fetch("http://localhost:3000/api/alerts/" + alertId, {method: "DELETE", headers: {authorization: `Bearer ${token}`}})
             if(result.ok){
                 setLoading("")
                 setSuccess("alert delete!!!")

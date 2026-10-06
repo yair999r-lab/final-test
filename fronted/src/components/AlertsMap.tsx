@@ -16,6 +16,7 @@ export interface MapAlert {
   lon: number;
   /** Latitude (קו רוחב), e.g. 32.08 for Tel Aviv */
   lat: number;
+  CreateAt: number;
 }
 
 export interface AlertsMapProps {

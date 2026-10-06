@@ -24,7 +24,7 @@ export const validUser = z.object({
     userName: z.string(),
     password: z.string(),
     email: z.string(),
-    role: z.enum(["arena_user", "general_user" , "admin"]),
+    role: z.enum(["arenaUser", "generalUser" , "admin"]),
     assignedArena: z.enum(["North", "South"  ,"Center" ,"All"])
 })
 
@@ -34,10 +34,10 @@ export const validLogin = z.object({
 })
 
 export function chackSchema(schema){
-   return function valid(req, _res, next){
+   return async function valid(req, _res, next){
         const data = req.body
-        const result = schema.safeParse(data)
-
+        const result = await schema.safeParse(data)
+      
         if(!result.success){
             const error = new Error("Essential data is missing")
             error.status = 400

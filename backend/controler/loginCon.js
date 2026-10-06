@@ -19,7 +19,7 @@ export async function login(req, res, next){
         }
         
         const token = generateToken(user.userName, user._id.toString(), user.role)
-        res.status(200).json({success: true, token})
+        res.status(200).json({success: true, token, data: {user: user.userName, role: user.role, assignedArena: user.assignedArena}})
     } catch (error) {
         next(error)
     }

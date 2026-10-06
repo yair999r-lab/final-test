@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import "./form.css"
 
 export interface Alert {
     displayName: string;
@@ -30,9 +31,9 @@ const NewAlert = () => {
     
     async function sendAlert(e: React.FormEvent){
         e.preventDefault()
-
+        const token = localStorage.getItem("token")
         try {
-            const result = await fetch("http://localhost:3000/api/alerts", {method: "POST", headers: {"Content-Type": "application/json"}, body: JSON.stringify({displayName,description, priority, arena, status, lon, lat})})
+            const result = await fetch("http://localhost:3000/api/alerts", {method: "POST", headers: {"Content-Type": "application/json", authorization: `Bearer ${token}`}, body: JSON.stringify({displayName,description, priority, arena, status, lon, lat})})
 
             const data = await result.json() as Respose
             if(result.ok){
@@ -48,7 +49,7 @@ const NewAlert = () => {
 
 
   return (
-    <div>
+    <div className='form'>
         {newAlert && <p>new alert id: {newAlert}</p>}
         <form onSubmit={sendAlert} >
             <label >displayName

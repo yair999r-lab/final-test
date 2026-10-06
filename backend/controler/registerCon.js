@@ -4,7 +4,7 @@ import bcrypt from "bcrypt"
 
 export async function register(req, res ,next) {
     try {
-        if(!req.user.role === "edmin"){
+        if(req.user.role != "admin"){
             const error = new Error("no auth to this router")
              error.ststus = 403
              throw(error)

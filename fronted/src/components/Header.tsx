@@ -26,11 +26,12 @@ const Header = () => {
     <div className="header">
         <p>user: {user?.user} - role: {user?.role}</p>
         <NavLink className={"nev-but"} to="/NewAlert">add new alerts</NavLink>
-        <NavLink className={"nev-but"} to="/UpdateAlert">update alerts</NavLink>
         <NavLink className={"nev-but"} to="/Dashdord">show alerts</NavLink>
-        <NavLink className={"nev-but"} to="/DeleteAlert">delete alerts</NavLink>
 
+        {user?.role === "generalUser" && <NavLink  className={"nev-but"} to="/UpdateStatus">update status</NavLink>}
         {user?.role === "admin" && <>
+        <NavLink className={"nev-but"} to="/UpdateAlert">update alerts</NavLink>
+        <NavLink className={"nev-but"} to="/DeleteAlert">delete alerts</NavLink>
         <NavLink className={"nev-but"} to="/RegisterPage">RegisterPage </NavLink>
         <NavLink className={"nev-but"} to="/AdminPage" >AdminPage </NavLink>
         </>}
