@@ -14,3 +14,17 @@ export async function getMe(req, res, next){
     }
 
 }
+
+export async function getAll(req, res ,next) {
+    try {
+         if(!req.user.role === "edmin"){
+            const error = new Error("no auth to this router")
+             error.ststus = 403
+             throw(error)}
+
+        const users = await myRepo.findData({}, "users")
+        res.status(200).json({success: true, data: users})
+    } catch (error) {
+        next(error)
+    }
+}

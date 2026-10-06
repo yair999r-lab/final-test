@@ -9,5 +9,4 @@ export async function deleteAlert(req, res, next) {
     } catch (error) {
         next(error)
     }
-    
 }
