@@ -8,7 +8,7 @@ export async function updateAlert(req, res, next) {
         const alertId = new ObjectId(req.params.id)
         const dataToUpdate = req.data
         console.log(dataToUpdate, alertId)
-        const updateAlert = await myRepo.updateData(alertId, dataToUpdate) 
+        const updateAlert = await myRepo.updateData(alertId, dataToUpdate, "alerts") 
         console.log(updateAlert)
         res.status(200).json({success: true, alert: updateAlert, alertId})
     } catch (error) {

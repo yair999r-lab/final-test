@@ -11,7 +11,7 @@ export async function showAlerts(req, res, next){
         }
         console.log(alertId)
         
-        const allAlerts = await myRepo.findData(filter)
+        const allAlerts = await myRepo.findData(filter, "alerts")
         console.log(allAlerts)
         res.status(200).json({success: true, data: allAlerts})
     } catch (error) {

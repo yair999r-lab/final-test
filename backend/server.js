@@ -2,6 +2,7 @@ import express from "express"
 import cors from "cors"
 import dataRouter from "./router/dataRouter.js"
 import getRouter from "./router/getRouter.js"
+import userRouter from "./router/userRouter.js"
 
 const PORT = process.env.PORT
 
@@ -13,6 +14,7 @@ server.use(cors())
 
 server.use("/api",dataRouter)
 server.use("/api",getRouter)
+server.use("/api", userRouter)
 
 server.use((err, _req, res, _next) => {
     const statusCod = err.status || 500
