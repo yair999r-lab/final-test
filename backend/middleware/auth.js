@@ -1,14 +1,13 @@
 import jwt from "jsonwebtoken"
 
 export function validAuth(req, _res, next){
-    const token = req.headers.Authorization
-
-    if(!token || !token.startsWith("Bearer")){
+    const auth = req.headers.authorization
+    if(!auth || !auth.startsWith("Bearer")){
         const error = new Error("no token send")
         error.status = 401
         throw(error)
     }
-
+    const token = auth.split(" ")[1]
     try {
         const decodet = jwt.verify(token, process.env.JWT_SECRET)
         req.user = decodet
