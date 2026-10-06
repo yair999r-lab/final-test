@@ -20,6 +20,14 @@ export const validUpdate = z.object({
     lon: z.string().optional(),
     lat: z.string().optional()})
 
+export const validUser = z.object({
+    userName: z.string(),
+    password: z.string(),
+    email: z.email(),
+    role: z.enum(["arena_user", "general_user" , "admin"]),
+    assignedArena: z.enum(["North", "South"  ,"Center" ,"All"])
+})
+
 
 export function chackSchema(schema){
    return function valid(req, _res, next){
