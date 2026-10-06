@@ -23,7 +23,7 @@ export const validUpdate = z.object({
 export const validUser = z.object({
     userName: z.string(),
     password: z.string(),
-    email: z.email(),
+    email: z.string(),
     role: z.enum(["arena_user", "general_user" , "admin"]),
     assignedArena: z.enum(["North", "South"  ,"Center" ,"All"])
 })
