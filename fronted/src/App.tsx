@@ -6,6 +6,10 @@ import Header from './components/Header'
 import NewAlert from './components/NewAlert'
 import UpdateAlert from './components/UpdateAlert'
 import DeleteAlert from './components/DeleteAlert'
+import Login from './components/Login'
+import Protected from './components/Protected'
+import RegisterPage from './components/RegisterPage'
+import { AdminPage } from './components/AdminPage'
 
 function App() {
 
@@ -13,12 +17,18 @@ function App() {
     <>
     <BrowserRouter>
     <Routes>
-    <Route path='/' element={<Header/>}>
+      <Route path='/Login' element={<Login/>}/>
+      <Route path='/' element={<Protected/>}>
+      <Route path='/' element={<Header/>}>
 
-    <Route path='/Dashdord' element={<Dashdord/>}/>
-    <Route path='/NewAlert' element={<NewAlert/>}/>
-    <Route path='/UpdateAlert' element={<UpdateAlert/>}/>
-    <Route path='/DeleteAlert' element={<DeleteAlert/>} />
+      <Route path='/Dashdord' element={<Dashdord/>}/>
+      <Route path='/NewAlert' element={<NewAlert/>}/>
+      <Route path='/UpdateAlert' element={<UpdateAlert/>}/>
+      <Route path='/DeleteAlert' element={<DeleteAlert/>}/>
+
+      <Route path='/RegisterPage' element={<RegisterPage/>}/>
+      <Route path='/AdminPage' element={<AdminPage/>}/>
+      </Route>
     </Route>
     </Routes>
     </BrowserRouter>
